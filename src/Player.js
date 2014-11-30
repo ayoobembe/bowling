@@ -17,3 +17,19 @@ Player.prototype.roll = function(number){
 Player.prototype.updateScore = function(number){
 	this.score = this.score + number;
 };
+
+
+
+
+//Integrate randomGen or rand into code
+
+
+function randomGen(){
+	return Math.floor(Math.random()*11);
+}
+
+
+Player.prototype.rand = function(){
+	var hit = randomGen();
+	return hit
+}
