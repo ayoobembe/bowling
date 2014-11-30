@@ -14,3 +14,7 @@ Frame.prototype.isEmpty = function(){
 	return this.empty;
 };
 
+Frame.prototype.count = function(){
+	return this.pins;
+};
+
