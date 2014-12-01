@@ -1,5 +1,5 @@
-function Player() {
-	this.frame = new Frame();
+function Player(frame) {
+	this.frame = frame;
 	this.tries = 2;
 	this.score = 0;
 };

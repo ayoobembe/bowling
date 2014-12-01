@@ -1,8 +1,11 @@
 function Game() {
-	this.player = new Player();
 	this.frameSet = setFrames();
+	this.player = new Player(this.frameSet[0]);
 };
 
+Game.prototype.playerTries = function(){
+	return this.player.tries;
+}
 
 //puts 10 frames in frameSet
 var setFrames = function(){
