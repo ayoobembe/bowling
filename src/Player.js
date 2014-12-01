@@ -2,7 +2,6 @@ function Player() {
 	this.frame = new Frame();
 	this.tries = 2;
 	this.score = 0;
-	this.shot = 0;
 };
 
 //Number of pins in the frame

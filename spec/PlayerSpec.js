@@ -5,12 +5,6 @@ describe('Player',function() {
 		expect(player.hasOwnProperty('frame')).toBe(true);
 	});
 
-	// it('should have a default shot of five', function(){
-	// 	var player = new Player();
-	// 	player.roll;
-	// 	expect(player.frameCount()).toEqual(5);
-	// }); 
-
 	it('Roll should modifiy the pin count in its frame', function() {
 		var player = new Player();
 		expect(player.frameCount()).toEqual(10);
