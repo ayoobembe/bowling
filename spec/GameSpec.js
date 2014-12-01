@@ -1,17 +1,18 @@
 describe('Game',function(){
 
+	beforeEach(function(){
+		game = new Game();
+	});
+
 	it('Should initialize a player',function(){
-		var game = new Game();
 		expect(game.hasOwnProperty('player')).toBe(true);
 	});
 
 	it('Should hold an array of 10 frames',function(){
-		var game = new Game();
 		expect(game.frameSet.length).toEqual(10);
 	});
 
 	it('Should know how many tries a player has left',function(){
-		var game = new Game();
 		expect(game.triesLeft()).toEqual(2);
 		game.playerRoll();//what happens here?
 		expect(game.triesLeft()).toEqual(1);
@@ -21,7 +22,6 @@ describe('Game',function(){
 
 
 	it('Should move a player to the next frame when a frame is done',function(){
-		var game = new Game();
 		expect(game.player.frame).toBe(game.frameSet[0]);
 		for(var i=0; i<2; i++){
 			game.playerRoll();

@@ -24,7 +24,6 @@ Game.prototype.playerRoll = function(number) {
 		this.player.switchFrame(this.frameSet[this.frameIndex]);
 	}
 
-
 };
 
 
