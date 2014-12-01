@@ -27,14 +27,18 @@ describe('Game',function(){
 		expect(game.triesLeft()).toEqual(2);
 	});
 
-	it('Should keep count of a players score', function(){
-
-	});
-
+	
 	it('Should know if the player had a strike', function(){
 		game.playerRoll(10);
 		expect(game.strike).toBe(true);
 	}); 
+
+	it('Should keep count of a players total score', function(){
+		game.playerRoll(5);
+		game.playerRoll(4);
+		expect(game.totalScore).toEqual(9);
+	});
+
 
 
 	// it('Should add strike bonus if player has strike', function(){

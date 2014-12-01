@@ -16,9 +16,11 @@ Game.prototype.playerRoll = function(number) {
 	if(this.triesLeft()==2){
 		this.checkBonus(number);
 		this.player.roll(number);
+		// this.player.addRoll1(number);
 	}
 	else if(this.triesLeft()==1){
 		this.player.roll(number);
+		// this.player.addRoll2(number)
 		this.frameIndex++;
 		this.player.switchFrame(this.frameSet[this.frameIndex]);
 	}
@@ -30,7 +32,7 @@ Game.prototype.checkBonus = function(number){
 			this.strike = true;
 		}
 	}
-	
+
 	}
 
 
@@ -42,7 +44,7 @@ Game.prototype.checkBonus = function(number){
 var setFrames = function(){
 	frameArray = [];
 	for(var i = 0; i < 10; i++){
-		frameArray.push(new Frame());
+		frameArray.push(new Frame()); //TEST THIS!
 	}
 	return frameArray
 }
@@ -98,4 +100,4 @@ Game.prototype.setSpare = function(){
 // 		this.player.switchFrame(this.frameSet[this.frameIndex]);
 // 		this.player.roll(hit);
 // 	}
-// }
+}
