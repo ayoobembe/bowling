@@ -16,10 +16,7 @@ describe('Game',function(){
 		expect(game.triesLeft()).toEqual(2);
 		game.playerRoll();//what happens here?
 		expect(game.triesLeft()).toEqual(1);
-		game.playerRoll();
-		// expect(game.triesLeft()).toEqual(0);
 	});
-
 
 	it('Should move a player to the next frame when a frame is done',function(){
 		expect(game.player.frame).toBe(game.frameSet[0]);
@@ -30,7 +27,21 @@ describe('Game',function(){
 		expect(game.triesLeft()).toEqual(2);
 	});
 
+	it('Should keep count of a players score', function(){
 
+	});
+
+	it('Should know if the player had a strike', function(){
+		game.playerRoll(10);
+		expect(game.strike).toBe(true);
+	}); 
+
+
+	// it('Should add strike bonus if player has strike', function(){
+	// 	game.playerRoll(10);
+	// 	game.playerRoll(5);
+
+	// }); 
 
 
 

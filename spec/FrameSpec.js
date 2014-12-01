@@ -25,6 +25,18 @@ describe('Frame',function(){
 		expect(frame.isEmpty()).toBe(true);
 	});
 
+	it('Should have a record of players frame score',function(){
+		frame.addRoll1(5);
+		expect(frame.frameScore).toEqual[5,0,0];
+		frame.addRoll2(4);
+		expect(frame.frameScore).toEqual[5,4,0];
+	});
+
+	it('Should have a record of players frame bonus',function(){
+		frame.addBonus(4);
+		expect(frame.frameScore).toEqual[0,0,4];
+	});
+
 	// it('',function(){
 
 	// });

@@ -5,7 +5,7 @@ function Game() {
 
 	this.spare = false;
 	this.strike = false;
-	this.frameScore = 0;
+	this.totalScore = 0;
 };
 
 Game.prototype.triesLeft = function(){
@@ -13,17 +13,29 @@ Game.prototype.triesLeft = function(){
 };
 
 Game.prototype.playerRoll = function(number) {
-	// this.player.roll();
 	if(this.triesLeft()==2){
+		this.checkBonus(number);
 		this.player.roll(number);
 	}
 	else if(this.triesLeft()==1){
 		this.player.roll(number);
-
 		this.frameIndex++;
 		this.player.switchFrame(this.frameSet[this.frameIndex]);
 	}
+};
 
+Game.prototype.checkBonus = function(number){
+	if(this.triesLeft()==2){
+		if(number==10){
+			this.strike = true;
+		}
+	}
+	
+	}
+
+
+	//after this frame ends should somehow return
+	//frame to original settings.
 };
 
 
