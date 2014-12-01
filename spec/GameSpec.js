@@ -10,28 +10,59 @@ describe('Game',function(){
 		expect(game.frameSet.length).toEqual(10);
 	});
 
-	it('Should know when a frame(2 tries) is done',function(){
+	it('Should know how many tries a player has left',function(){
 		var game = new Game();
-		expect(game.player.tries).toEqual(2);
+		expect(game.triesLeft()).toEqual(2);
 		game.playerRoll();//what happens here?
+		expect(game.triesLeft()).toEqual(1);
 		game.playerRoll();
-		expect(game.playerTries()).toEqual(0);
+		// expect(game.triesLeft()).toEqual(0);
 	});
 
-	it('Should move a player to next frame when a frame is done',function(){
+
+	it('Should move a player to the next frame when a frame is done',function(){
 		var game = new Game();
 		expect(game.player.frame).toBe(game.frameSet[0]);
-		for(var i=0; i<3; i++){
+		for(var i=0; i<2; i++){
 			game.playerRoll();
 		}
 		expect(game.player.frame).toEqual(game.frameSet[1]);
-		expect(game.playerTries()).toEqual(1);
+		expect(game.triesLeft()).toEqual(2);
 	});
 
-	it('Should give player a spare bonus',function(){});
 
-	it('Should give player a strike bonus',function(){});
 
-	it('',function(){}); 
+
+
+	// it('Should know if the player has a spare',function(){
+	// 	var game = new Game();
+	// 	for(var i=0; i<2; i++) {
+	// 		game.player.roll(5);	
+	// 	}
+	// 	// expect(game.player.frameCount()).toEqual(0);
+	// 	expect(game.spare).toEqual(true);
+	// });	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// it('Should give player a spare bonus',function(){
+
+	// });
+
+	// it('Should know if the player has a strike',function(){});
+
+	// it('Should give player a strike bonus',function(){});
+
+	// it('',function(){}); 
 
 }); 
