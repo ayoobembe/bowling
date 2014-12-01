@@ -36,11 +36,21 @@ describe('Player',function() {
 		expect(player.score).toEqual(4);
 	}); 
 
-	it('should update its score on each roll', function() {
+	it('Should update its score on each roll', function() {
 		var luckyShot = 6;
 		player.roll(luckyShot);
 		expect(player.score).toEqual(luckyShot);
 	});
+
+	it('Should be able to have its frame changed', function(){
+		expect(player.tries).toEqual(2);
+		for(var i = 0; i<2; i++){
+			player.roll();
+		}
+		expect(player.tries).toEqual(0);
+		player.switchFrame(new Frame)
+		expect(player.tries).toEqual(2);
+	}); 
 
 
 }); 

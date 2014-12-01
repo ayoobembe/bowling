@@ -21,14 +21,34 @@ Player.prototype.updateScore = function(number){
 	this.score = this.score + number;
 };
 
+Player.prototype.switchFrame = function(frame){
+	this.frame = frame;
+	this.tries = 2;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //These functions are used to generate random scores
-function randomGen(){
-	return Math.floor(Math.random()*11);
-}
+// function randomGen(){
+// 	return Math.floor(Math.random()*11);
+// }
 
 
-Player.prototype.rand = function(){
-	var hit = randomGen();
-	return hit
-}
+// Player.prototype.rand = function(){
+// 	var hit = randomGen();
+// 	return hit
+// }
