@@ -2,7 +2,7 @@ describe('Player',function() {
 
 	beforeEach(function(){
 		playersFrame = new Frame();
-		player = new Player(playersFrame)
+		player = new Player(playersFrame);
 	}); 
 
 	it('Should have a frame when initialized', function(){
@@ -27,20 +27,11 @@ describe('Player',function() {
 		expect(player.tries).toEqual(0);
 	});
 
-	it('Should have a score of 0 when initialized',function(){ 
-		expect(player.score).toEqual(0);
-	});
-
-	it('Should be able to update its score', function() {
-		player.updateScore(4);
-		expect(player.score).toEqual(4);
+	it("Should be able to retrieve score from the frame it's on", function(){
+		player.roll(5);
+		player.roll(3);
+		expect(player.frame.frameScore).toEqual(8);
 	}); 
-
-	it('Should update its score on each roll', function() {
-		var luckyShot = 6;
-		player.roll(luckyShot);
-		expect(player.score).toEqual(luckyShot);
-	});
 
 	it('Should be able to have its frame changed', function(){
 		expect(player.tries).toEqual(2);

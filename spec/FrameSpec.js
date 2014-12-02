@@ -25,17 +25,28 @@ describe('Frame',function(){
 		expect(frame.isEmpty()).toBe(true);
 	});
 
+
 	it('Should have a record of players frame score',function(){
 		frame.addRoll1(5);
-		expect(frame.frameScore).toEqual[5,0,0];
+		expect(frame.firstRoll).toEqual(5);
 		frame.addRoll2(4);
-		expect(frame.frameScore).toEqual[5,4,0];
+		expect(frame.secondRoll).toEqual(4);
 	});
 
 	it('Should have a record of players frame bonus',function(){
 		frame.addBonus(4);
-		expect(frame.frameScore).toEqual[0,0,4];
+		expect(frame.bonus).toEqual(4);
 	});
+
+	it('Should know the players score on that frame', function() {
+		frame.addRoll1(5);
+		frame.addRoll2(4);
+		frame.addBonus(2);
+		frame.setFrameScore();
+		expect(frame.frameScore).toEqual(11);
+	}); 
+
+	
 
 	// it('',function(){
 

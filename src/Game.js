@@ -12,17 +12,16 @@ Game.prototype.triesLeft = function(){
 	return this.player.tries;
 };
 
+Game.prototype.playerRoll1 = function(number) {
+	this.player.roll(number);
+}
+
 Game.prototype.playerRoll = function(number) {
 	if(this.triesLeft()==2){
-		this.checkBonus(number);
-		this.player.roll(number);
-		// this.player.addRoll1(number);
+		this.playerRoll1();
 	}
 	else if(this.triesLeft()==1){
-		this.player.roll(number);
-		// this.player.addRoll2(number)
-		this.frameIndex++;
-		this.player.switchFrame(this.frameSet[this.frameIndex]);
+		this.playerRoll2();
 	}
 };
 
@@ -30,21 +29,26 @@ Game.prototype.checkBonus = function(number){
 	if(this.triesLeft()==2){
 		if(number==10){
 			this.strike = true;
-		}
+		}	
 	}
-
-	}
-
-
-	//after this frame ends should somehow return
-	//frame to original settings.
 };
 
+
+
+	// if(this.triesLeft()==2){
+	// 	this.checkBonus(number);
+	// 	this.player.roll(number);
+	// }
+	// else if(this.triesLeft()==1){
+	// 	this.player.roll(number);
+	// 	this.frameIndex++;
+	// 	this.player.switchFrame(this.frameSet[this.frameIndex]);
+	// }
 
 var setFrames = function(){
 	frameArray = [];
 	for(var i = 0; i < 10; i++){
-		frameArray.push(new Frame()); //TEST THIS!
+		frameArray.push(new Frame());
 	}
 	return frameArray
 }
@@ -100,4 +104,4 @@ Game.prototype.setSpare = function(){
 // 		this.player.switchFrame(this.frameSet[this.frameIndex]);
 // 		this.player.roll(hit);
 // 	}
-}
+// }

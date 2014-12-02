@@ -1,7 +1,10 @@
 function Frame() {
 	this.pins = 10;
 	this.empty = false;
-	this.frameScore = [0,0,0];
+	this.firstRoll = 0;
+	this.secondRoll = 0;
+	this.bonus = 0;
+	this.frameScore = 0;
 };
 
 Frame.prototype.elim = function(n){
@@ -20,13 +23,24 @@ Frame.prototype.count = function(){
 };
 
 Frame.prototype.addRoll1 = function(shot1){
-	this.frameScore[0] = shot1;
+	this.firstRoll = shot1;
 };
 
 Frame.prototype.addRoll2 = function(shot2){
-	this.frameScore[1] = shot2;
+	this.secondRoll = shot2;
 };
 
 Frame.prototype.addBonus = function(bonus){
-	this.frameScore[2] = bonus;
+	this.bonus = bonus;
 };
+
+Frame.prototype.setFrameScore = function(){
+	this.frameScore = (this.firstRoll + this.secondRoll + this.bonus);
+};
+
+
+
+//Note: the frame should be able to keep the score of the player
+//
+//
+//

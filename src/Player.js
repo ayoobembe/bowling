@@ -1,24 +1,25 @@
 function Player(frame) {
 	this.frame = frame;
 	this.tries = 2;
-	this.score = 0;
+
 };
 
-//Number of pins in the frame
 Player.prototype.frameCount = function() {
 	return this.frame.count();
 };
 
-//A roll reduces number of pins in the frame
 Player.prototype.roll = function(number){
 	this.frame.elim(number);
+	if (this.tries==2) {this.frame.addRoll1(number);}
+		else if(this.tries == 1) {
+			this.frame.addRoll2(number);
+			this.frame.setFrameScore();
+		}
 	this.tries = this.tries - 1;
-	this.updateScore(number);
 };
 
-//keeps count of the player's score
-Player.prototype.updateScore = function(number){
-	this.score = this.score + number;
+Player.prototype.eachFrameScore = function(){
+	return this.frame.frameScore;
 };
 
 Player.prototype.switchFrame = function(frame){
