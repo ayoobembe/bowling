@@ -15,7 +15,18 @@ Game.prototype.triesLeft = function(){
 Game.prototype.playerRoll1 = function(number){
 	this.totalScore = this.totalScore + number;
 	this.player.roll(number);
-	
+	if(this.strike==true){this.addStrike(number)}
+	if(number==10) {this.strikeSkip()}
+};
+
+Game.prototype.strikeSkip = function(){
+		this.strike = true;
+		this.moveFrame();	
+};
+
+Game.prototype.addStrike = function(number){
+		this.player.frame.addBonus(number);
+		this.totalScore = this.totalScore + number;	
 };
 
 Game.prototype.playerRoll2 = function(number) {

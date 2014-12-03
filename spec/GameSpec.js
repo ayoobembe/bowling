@@ -60,7 +60,29 @@ describe('Game',function(){
 			for(var i=0; i<2; i++){game.playerRoll(3);}
 			expect(game.player.frame).toBe(game.frameSet[1]);
 		});
- 
+
+ 		it('Should know if the player had a strike', function(){
+		 	game.playerRoll(10);
+		 	expect(game.strike).toBe(true);
+		});
+
+		it('Should skip second roll on frame if player has a strike', function(){
+			expect(game.player.frame).toBe(game.frameSet[0]);
+			game.playerRoll(10);
+			expect(game.player.frame).toBe(game.frameSet[1]);
+			expect(game.triesLeft()).toEqual(2);
+		});
+
+		it('Should assign the player bonus in next immediate roll if player has strike', function(){
+			game.playerRoll(10);
+			game.playerRoll(5);
+			expect(game.player.frame.bonus).toEqual(5);
+			expect(game.totalScore).toEqual(20);
+			expect(game.triesLeft()).toEqual(1);
+		}); 
+
+	
+
 	});
 
 }); 
