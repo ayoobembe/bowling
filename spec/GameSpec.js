@@ -1,43 +1,69 @@
 describe('Game',function(){
 
-	beforeEach(function(){
-		game = new Game();
-		game.playerRoll1 = jasmine.createSpy("playerRoll1");
-		game.playerRoll2 = jasmine.createSpy("playerRoll2");		
+	describe('Rolling', function(){
+
+		beforeEach(function(){
+			game = new Game();
+			game.playerRoll1 = jasmine.createSpy("playerRoll1");
+			game.playerRoll2 = jasmine.createSpy("playerRoll2");		
+		});
+
+		it('Should initialize a player',function(){
+			expect(game.hasOwnProperty('player')).toBe(true);
+		});
+
+		it('Should hold an array of 10 frames',function(){
+			expect(game.frameSet.length).toEqual(10);
+		});
+
+		it('calls 2 seperate roll functions', function() {
+			game.playerRoll(5);
+			expect(game.playerRoll1).toHaveBeenCalled();
+			game.player.roll(5);
+			game.playerRoll(2);
+			expect(game.playerRoll2).toHaveBeenCalled();
+		});
+
+		it('Calls playerRoll1 and not playerRoll 2, on 1st roll', function(){
+			game.playerRoll(1);
+			expect(game.playerRoll1).toHaveBeenCalled();
+			expect(game.playerRoll2).not.toHaveBeenCalled();
+		});
+
+		it('Calls playerRoll2 and not playerRoll1, on 2nd roll', function() {
+			game.player.roll(5);
+			game.playerRoll(4);
+			expect(game.playerRoll1).not.toHaveBeenCalled();
+			expect(game.playerRoll2).toHaveBeenCalled();
+		});
+
 	});
 
-//Tests for basic functionality
-	it('Should initialize a player',function(){
-		expect(game.hasOwnProperty('player')).toBe(true);
+
+	describe("Scoring", function(){
+
+		beforeEach(function(){
+			game = new Game();
+		});
+
+		it('Should update the totalscore at the end of each roll', function() {
+			game = new Game();
+			game.playerRoll(3);
+			expect(game.totalScore).toEqual(3);
+			game.playerRoll(2);
+			expect(game.totalScore).toEqual(5);
+		}); 
+
+		it('Should move player to the next frame after its second roll', function(){
+			expect(game.triesLeft()).toEqual(2);
+			expect(game.player.frame).toBe(game.frameSet[0]);
+			for(var i=0; i<2; i++){game.playerRoll(3);}
+			expect(game.player.frame).toBe(game.frameSet[1]);
+		});
+ 
 	});
 
-	it('Should hold an array of 10 frames',function(){
-		expect(game.frameSet.length).toEqual(10);
-	});
-
-	it('calls 2 seperate roll functions', function() {
-		game.playerRoll(5);
-		expect(game.playerRoll1).toHaveBeenCalled();
-		game.player.roll(5);
-		game.playerRoll(2);
-		expect(game.playerRoll2).toHaveBeenCalled();
-	});
-
-//Tests to ensure proper calling of roles
-	it('calls playerRoll1 and not playerRoll 2, on 1st roll', function(){
-		game.playerRoll(1);
-		expect(game.playerRoll1).toHaveBeenCalled();
-		expect(game.playerRoll2).not.toHaveBeenCalled();
-	});
-
-	it('calls playerRoll2 and not playerRoll1, on 2nd roll', function() {
-		game.player.roll(5);
-		game.playerRoll(4);
-		expect(game.playerRoll1).not.toHaveBeenCalled();
-		expect(game.playerRoll2).toHaveBeenCalled();
-	});
-
-//Tests to verify functionality of playerRoll
+}); 
 	
 
 
@@ -112,4 +138,3 @@ describe('Game',function(){
 // 	b) The actual animation for the game itself. Including jquery.
 
 
-}); 

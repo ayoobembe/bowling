@@ -46,10 +46,4 @@ describe('Frame',function(){
 		expect(frame.frameScore).toEqual(11);
 	}); 
 
-	
-
-	// it('',function(){
-
-	// });
-
 });

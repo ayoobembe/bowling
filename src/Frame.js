@@ -38,9 +38,3 @@ Frame.prototype.setFrameScore = function(){
 	this.frameScore = (this.firstRoll + this.secondRoll + this.bonus);
 };
 
-
-
-//Note: the frame should be able to keep the score of the player
-//
-//
-//

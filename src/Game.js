@@ -12,18 +12,31 @@ Game.prototype.triesLeft = function(){
 	return this.player.tries;
 };
 
-Game.prototype.playerRoll1 = function(number) {
+Game.prototype.playerRoll1 = function(number){
+	this.totalScore = this.totalScore + number;
 	this.player.roll(number);
-}
+	
+};
+
+Game.prototype.playerRoll2 = function(number) {
+	this.totalScore = this.totalScore + number;
+	this.player.roll(number);
+	this.moveFrame();
+};
 
 Game.prototype.playerRoll = function(number) {
 	if(this.triesLeft()==2){
-		this.playerRoll1();
+		this.playerRoll1(number);
 	}
 	else if(this.triesLeft()==1){
-		this.playerRoll2();
+		this.playerRoll2(number);
 	}
 };
+
+Game.prototype.moveFrame = function(){
+	this.frameIndex++;
+	this.player.switchFrame(this.frameSet[this.frameIndex]);
+}
 
 Game.prototype.checkBonus = function(number){
 	if(this.triesLeft()==2){
@@ -32,6 +45,24 @@ Game.prototype.checkBonus = function(number){
 		}	
 	}
 };
+
+var setFrames = function(){
+	frameArray = [];
+	for(var i = 0; i < 10; i++){
+		frameArray.push(new Frame());
+	}
+	return frameArray
+}
+
+function randomGen(){
+	return Math.floor(Math.random()*11);
+}
+
+Game.prototype.setSpare = function(){
+	this.spare = !this.spare
+}
+
+
 
 
 
@@ -44,25 +75,6 @@ Game.prototype.checkBonus = function(number){
 	// 	this.frameIndex++;
 	// 	this.player.switchFrame(this.frameSet[this.frameIndex]);
 	// }
-
-var setFrames = function(){
-	frameArray = [];
-	for(var i = 0; i < 10; i++){
-		frameArray.push(new Frame());
-	}
-	return frameArray
-}
-
-
-function randomGen(){
-	return Math.floor(Math.random()*11);
-}
-
-Game.prototype.setSpare = function(){
-	this.spare = !this.spare
-}
-
-
 
 
 
